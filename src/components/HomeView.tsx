@@ -19,8 +19,7 @@ import {
   Leaf, 
   BookOpen, 
   Phone, 
-  Calendar,
-  Film
+  Calendar
 } from 'lucide-react';
 
 interface HomeViewProps {
@@ -125,22 +124,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   View Selected Work
                 </button>
 
-                {openVeoModal && (
-                  <button
-                    id="hero-cta-animate"
-                    onClick={() => openVeoModal()}
-                    className="px-4 py-3.5 text-xs text-[#B39266] hover:text-[#1C1B1A] uppercase tracking-[0.14em] font-medium flex items-center gap-1.5 transition-colors border border-[#B39266]/30 hover:border-[#B39266] bg-[#C5A880]/10"
-                    title="Animate interior photos into cinematic walkthrough videos with Veo 3.1"
-                  >
-                    <Film className="w-4 h-4 text-[#B39266]" />
-                    <span>Animate Space (Veo)</span>
-                  </button>
-                )}
-
                 <button
                   id="hero-cta-kitchens"
                   onClick={() => navigate('kitchens')}
-                  className="px-4 py-3.5 text-xs text-[#8C827A] hover:text-[#1C1B1A] uppercase tracking-[0.14em] font-medium flex items-center gap-1.5 transition-colors"
+                  className="px-5 py-3.5 text-xs text-[#8C827A] hover:text-[#1C1B1A] uppercase tracking-[0.14em] font-medium flex items-center gap-1.5 transition-colors border border-[#1C1B1A]/10 hover:border-[#1C1B1A]/30 bg-white/60"
                 >
                   <ChefHat className="w-4 h-4 text-[#B39266]" />
                   <span>Commercial Kitchens</span>

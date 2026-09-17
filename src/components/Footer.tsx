@@ -13,7 +13,6 @@ import {
 interface FooterProps {
   navigate: (route: ViewRoute, slug?: string) => void;
   openBookingModal: () => void;
-  openSeoDrawer?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ navigate, openBookingModal }) => {

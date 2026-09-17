@@ -10,9 +10,7 @@ import { BLOG_DATA } from './data/blogData';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { BookingModal } from './components/BookingModal';
-import { SeoManagerModal } from './components/SeoManagerModal';
 import { CookieBanner } from './components/CookieBanner';
-import { VeoVideoModal } from './components/VeoVideoModal';
 import { motion, AnimatePresence } from 'motion/react';
 
 // Views
@@ -37,15 +35,7 @@ export default function App() {
   const [currentRoute, setCurrentRoute] = useState<ViewRoute>('home');
   const [activeSlug, setActiveSlug] = useState<string | undefined>(undefined);
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
-  const [seoModalOpen, setSeoModalOpen] = useState(false);
-  const [veoModalOpen, setVeoModalOpen] = useState(false);
-  const [veoInitialImage, setVeoInitialImage] = useState<string | undefined>(undefined);
-  const [seoStore, setSeoStore] = useState<Record<string, SeoMetadata>>(INITIAL_SEO_CONFIG);
-
-  const openVeoModal = (initialImg?: string) => {
-    setVeoInitialImage(initialImg);
-    setVeoModalOpen(true);
-  };
+  const [seoStore] = useState<Record<string, SeoMetadata>>(INITIAL_SEO_CONFIG);
 
   // Sync document title and meta whenever route or slug updates
   useEffect(() => {
@@ -81,13 +71,6 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleUpdateSeo = (routeKey: string, updated: SeoMetadata) => {
-    setSeoStore((prev) => ({
-      ...prev,
-      [routeKey]: updated
-    }));
-  };
-
   // Find active items for detail views
   const currentProject = PROJECTS_DATA.find((p) => p.slug === activeSlug) || PROJECTS_DATA[0];
   const currentService = SERVICES_DATA.find((s) => s.slug === activeSlug) || SERVICES_DATA[0];
@@ -101,8 +84,6 @@ export default function App() {
         currentRoute={currentRoute}
         navigate={navigate}
         openBookingModal={() => setBookingModalOpen(true)}
-        openSeoDrawer={() => setSeoModalOpen(true)}
-        openVeoModal={() => openVeoModal()}
       />
 
       {/* Main View Router Stage */}
@@ -119,7 +100,6 @@ export default function App() {
               <HomeView
                 navigate={navigate}
                 openBookingModal={() => setBookingModalOpen(true)}
-                openVeoModal={openVeoModal}
                 projects={PROJECTS_DATA}
                 services={SERVICES_DATA}
                 blogPosts={BLOG_DATA}
@@ -257,27 +237,12 @@ export default function App() {
       <Footer
         navigate={navigate}
         openBookingModal={() => setBookingModalOpen(true)}
-        openSeoDrawer={() => setSeoModalOpen(true)}
       />
 
-      {/* Global Interactive Modals & Drawers */}
+      {/* Global Interactive Modals */}
       <BookingModal
         isOpen={bookingModalOpen}
         onClose={() => setBookingModalOpen(false)}
-      />
-
-      <VeoVideoModal
-        isOpen={veoModalOpen}
-        onClose={() => setVeoModalOpen(false)}
-        initialImage={veoInitialImage}
-      />
-
-      <SeoManagerModal
-        isOpen={seoModalOpen}
-        onClose={() => setSeoModalOpen(false)}
-        seoStore={seoStore}
-        activeRouteKey={currentRoute}
-        onUpdateSeo={handleUpdateSeo}
       />
 
       <CookieBanner

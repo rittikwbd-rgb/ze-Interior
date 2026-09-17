@@ -6,29 +6,25 @@ import {
   Phone, 
   ArrowUpRight, 
   Sparkles, 
-  Sliders, 
   BookOpen, 
   ChefHat, 
   Layers, 
   MapPin, 
-  Calendar,
-  Film 
+  Calendar 
 } from 'lucide-react';
 
 interface NavbarProps {
   currentRoute: ViewRoute;
   navigate: (route: ViewRoute, slug?: string) => void;
-  openBookingModal: () => void;
-  openSeoDrawer: () => void;
+  openBookingModal?: () => void;
+  openSeoDrawer?: () => void;
   openVeoModal?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   currentRoute,
   navigate,
-  openBookingModal,
-  openSeoDrawer,
-  openVeoModal
+  openBookingModal
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -53,32 +49,32 @@ export const Navbar: React.FC<NavbarProps> = ({
         id="main-navigation"
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? 'bg-[#FAF8F5]/95 backdrop-blur-md py-3 shadow-xs border-b border-[#1C1B1A]/8'
-            : 'bg-transparent py-5'
+            ? 'bg-[#FAF8F5]/95 backdrop-blur-md py-3.5 shadow-xs border-b border-[#1C1B1A]/8'
+            : 'bg-[#FAF8F5]/80 backdrop-blur-xs py-4 sm:py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           {/* Brand Logo */}
           <button
             id="brand-logo-btn"
             onClick={() => handleNav('home')}
-            className="text-left group cursor-pointer focus-ring"
+            className="text-left group cursor-pointer focus-ring shrink-0 whitespace-nowrap"
             aria-label="ZEDesign Interiors Home"
           >
-            <span className="block font-serif text-2xl sm:text-3xl tracking-tight text-[#1C1B1A] font-semibold">
+            <span className="block font-serif text-2xl sm:text-3xl tracking-tight text-[#1C1B1A] font-semibold leading-none">
               ZE<span className="font-light italic text-[#B39266]">Design</span>
             </span>
-            <span className="block text-[10px] sm:text-[11px] tracking-[0.25em] text-[#8C827A] uppercase font-medium">
+            <span className="block text-[10px] sm:text-[11px] tracking-[0.22em] text-[#8C827A] uppercase font-medium mt-1">
               Interiors • Preston & UK
             </span>
           </button>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-7" aria-label="Main menu">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 whitespace-nowrap" aria-label="Main menu">
             <button
               id="nav-link-about"
               onClick={() => handleNav('about')}
-              className={`text-[13.5px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
+              className={`text-[13px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
                 currentRoute === 'about' ? 'text-[#B39266] font-semibold' : 'text-[#1C1B1A]/80'
               }`}
             >
@@ -88,7 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-link-services"
               onClick={() => handleNav('services')}
-              className={`text-[13.5px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
+              className={`text-[13px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
                 currentRoute === 'services' || currentRoute === 'service-detail'
                   ? 'text-[#B39266] font-semibold'
                   : 'text-[#1C1B1A]/80'
@@ -100,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-link-projects"
               onClick={() => handleNav('projects')}
-              className={`text-[13.5px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
+              className={`text-[13px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
                 currentRoute === 'projects' || currentRoute === 'project-detail'
                   ? 'text-[#B39266] font-semibold'
                   : 'text-[#1C1B1A]/80'
@@ -112,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-link-kitchens"
               onClick={() => handleNav('kitchens')}
-              className={`text-[13.5px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] flex items-center gap-1 ${
+              className={`text-[13px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] flex items-center gap-1 ${
                 currentRoute === 'kitchens' ? 'text-[#B39266] font-semibold' : 'text-[#1C1B1A]/80'
               }`}
             >
@@ -123,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-link-toolkit"
               onClick={() => handleNav('toolkit')}
-              className={`text-[13.5px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
+              className={`text-[13px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
                 currentRoute === 'toolkit' ? 'text-[#B39266] font-semibold' : 'text-[#1C1B1A]/80'
               }`}
             >
@@ -133,7 +129,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-link-locations"
               onClick={() => handleNav('locations')}
-              className={`text-[13.5px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
+              className={`text-[13px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
                 currentRoute === 'locations' || currentRoute === 'location-detail'
                   ? 'text-[#B39266] font-semibold'
                   : 'text-[#1C1B1A]/80'
@@ -145,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-link-blog"
               onClick={() => handleNav('blog')}
-              className={`text-[13.5px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
+              className={`text-[13px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
                 currentRoute === 'blog' || currentRoute === 'blog-detail'
                   ? 'text-[#B39266] font-semibold'
                   : 'text-[#1C1B1A]/80'
@@ -157,7 +153,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               id="nav-link-contact"
               onClick={() => handleNav('contact')}
-              className={`text-[13.5px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
+              className={`text-[13px] uppercase tracking-[0.14em] font-medium transition-colors hover:text-[#B39266] ${
                 currentRoute === 'contact' ? 'text-[#B39266] font-semibold' : 'text-[#1C1B1A]/80'
               }`}
             >
@@ -165,52 +161,20 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </nav>
 
-          {/* Right Actions: Phone, SEO Manager toggle, Primary CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
-            {openVeoModal && (
-              <button
-                id="btn-nav-veo"
-                onClick={openVeoModal}
-                className="px-2.5 py-1.5 text-xs text-[#B39266] hover:text-[#1C1B1A] border border-[#B39266]/30 hover:border-[#B39266] rounded-xs flex items-center gap-1.5 transition-colors cursor-pointer bg-[#C5A880]/10"
-                title="Animate interior photos into video using Veo 3.1"
-              >
-                <Film className="w-3.5 h-3.5 text-[#B39266]" />
-                <span className="font-mono text-[11px] font-semibold">Veo Animator</span>
-              </button>
-            )}
-
-            <button
-              id="btn-seo-admin"
-              onClick={openSeoDrawer}
-              className="px-2.5 py-1.5 text-xs text-[#8C827A] hover:text-[#1C1B1A] border border-[#1C1B1A]/15 hover:border-[#B39266] rounded-xs flex items-center gap-1.5 transition-colors cursor-pointer"
-              title="Inspect Page SEO & Structured Data"
-              aria-label="Open SEO and Schema Inspector"
-            >
-              <Sliders className="w-3.5 h-3.5 text-[#B39266]" />
-              <span className="font-mono text-[11px]">SEO Config</span>
-            </button>
-
+          {/* Right Action: Primary CTA */}
+          <div className="hidden lg:flex items-center shrink-0">
             <button
               id="header-primary-cta"
               onClick={() => handleNav('contact')}
-              className="relative inline-flex items-center justify-center px-6 py-2.5 bg-[#1C1B1A] text-[#FAF8F5] text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 hover:bg-[#343230] group cursor-pointer focus-ring shadow-xs"
+              className="relative inline-flex items-center justify-center px-5 xl:px-6 py-2.5 bg-[#1C1B1A] text-[#FAF8F5] text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 hover:bg-[#343230] group cursor-pointer focus-ring shadow-xs whitespace-nowrap"
             >
               <span>Discuss Your Project</span>
               <ArrowUpRight className="w-3.5 h-3.5 ml-1.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#B39266]" />
             </button>
           </div>
 
-          {/* Mobile Menu Trigger & Fast Call */}
-          <div className="flex items-center space-x-2 lg:hidden">
-            <button
-              id="btn-mobile-seo"
-              onClick={openSeoDrawer}
-              className="p-2 text-[#8C827A] border border-[#1C1B1A]/15 rounded-xs"
-              aria-label="SEO Inspector"
-            >
-              <Sliders className="w-4 h-4 text-[#B39266]" />
-            </button>
-
+          {/* Mobile Menu Trigger */}
+          <div className="flex items-center lg:hidden">
             <button
               id="btn-mobile-menu"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -288,18 +252,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               Sustainability & Reclaimed
             </button>
-            {openVeoModal && (
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  openVeoModal();
-                }}
-                className="text-left font-serif text-2xl text-[#C5A880] transition-colors flex items-center justify-between"
-              >
-                <span>AI Space Animator (Veo)</span>
-                <Film className="w-5 h-5 text-[#C5A880]" />
-              </button>
-            )}
             <button
               onClick={() => handleNav('toolkit')}
               className="text-left font-serif text-2xl text-[#C5A880] transition-colors flex items-center gap-2"
